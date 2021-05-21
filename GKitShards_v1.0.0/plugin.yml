@@ -1,0 +1,11 @@
+name: GkitShards
+version: 1.0.0
+api: 3.0.0
+main: Sinkerz\GkitShards\Loader
+author: Sinkerz
+
+commands:
+  setshardinv:
+    description: "Set shard inv"
+  giveshard:
+    description: "Give shard inv"
