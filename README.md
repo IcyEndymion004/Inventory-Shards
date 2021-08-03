@@ -1,4 +1,4 @@
-# Gkit-shards-from-a-plugin-i-was-scammed-
+# Inventory Shards
 This was a plugin that i got from a deal were the other half got scammed
 
 I may update if needed and add new stuff 
