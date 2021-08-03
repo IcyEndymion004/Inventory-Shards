@@ -1,6 +1,6 @@
 <?php
 
-namespace IcyENdymion004\GkitShards;
+namespace IcyEndymion004\GkitShards;
 
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
