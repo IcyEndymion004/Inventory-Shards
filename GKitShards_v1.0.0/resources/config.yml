@@ -1,8 +1,0 @@
----
-type-shards:
-  typeshard1:
-    item-name: "Shard1"
-    item-lore:
-      - "Lore line 1."
-      - "Lore line 2."
-...
