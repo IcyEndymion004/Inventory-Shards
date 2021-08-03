@@ -1,0 +1,11 @@
+name: GkitShards
+version: 0.0.2
+api: 3.0.0
+main: IcyEndymion004\GkitShards\Loader
+author: IcyEndymion004
+
+commands:
+  setshardinv:
+    description: "Set shard inv"
+  giveshard:
+    description: "Give shard inv"
