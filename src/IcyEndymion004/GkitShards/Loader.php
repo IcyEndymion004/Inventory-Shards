@@ -34,7 +34,7 @@ class Loader extends PluginBase implements Listener {
     public function onInteract(PlayerInteractEvent $event): void{
         $player = $event->getPlayer();
         $item = $event->getItem();
-        if($item->getNamedTag()->hasTag("invdata") && $item->getId() === ItemIds::HEART_OF_THE_SEA){
+        if($item->getNamedTag()->hasTag("invdata") && $item->getId() === ItemIds::NETHER_STAR){
             $val = $item->getNamedTag()->getTag("invdata")->getValue();
             $contents = $this->getInvContents($val);
             if($player->getInventory()->firstEmpty() === -1) {
@@ -73,7 +73,7 @@ class Loader extends PluginBase implements Listener {
                 $sender->sendMessage(TextFormat::RED . $args[0] . " does not exist.");
                 return false;
             }
-            $item = ItemFactory::get(ItemIds::HEART_OF_THE_SEA);
+            $item = ItemFactory::get(ItemIds::NETHER_STAR);
             $item->setCustomName($this->getConfig()->get("type-shards")[$args[0]]["item-name"]);
             $item->setLore($this->getConfig()->get("type-shards")[$args[0]]["item-lore"]);
             $item->setNamedTagEntry(new StringTag("invdata", $args[0]));
