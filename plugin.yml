@@ -1,12 +1,12 @@
-name: GkitShards
-version: 0.0.2
+name: InventoryShards
+version: 0.0.4
 api: 3.0.0
 main: IcyEndymion004\GkitShards\Loader
 author: IcyEndymion004
-website: https://github.com/IcyEndymion004/GShards--was-from-a-scam-
+website: https://github.com/IcyEndymion004/Inventory-Shards
 
 commands:
   setshardinv:
-    description: "Set shard inv"
+    description: "Sets Your Inventory As A Shard"
   giveshard:
-    description: "Give shard inv"
+    description: "Gives You A Inventory Shard"
