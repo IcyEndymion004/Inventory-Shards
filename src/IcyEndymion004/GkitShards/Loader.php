@@ -28,7 +28,24 @@ class Loader extends PluginBase implements Listener {
     {
         $this->getServer()->getPluginManager()->registerEvents($this,$this);
         $this->saveDefaultConfig();
-        $this->shardData = new Config($this->getDataFolder() . "sharddata.yml", Config::YAML);
+        $this->shardData = new Config($this->getDataFolder() . "sharddata.yml", Config::YAML);  
+                @mkdir($this->getDataFolder());
+        $this->saveResource("config.yml");
+        if (!$this->getConfig()->exists("config-version")) {
+			      $this->getLogger()->notice("§eYour configuration file is from another version. Updating the Config...");
+			      $this->getLogger()->notice("§eThe old configuration file can be found at config_old.yml");
+			      rename($this->getDataFolder()."config.yml", $this->getDataFolder()."config_old.yml");
+			      $this->saveResource("config.yml");
+			      return;
+		    }
+		    if (version_compare("0.4", $this->getConfig()->get("config-version"))) {
+            $this->getLogger()->notice("§eYour configuration file is from another version. Updating the Config...");
+			      $this->getLogger()->notice("§eThe old configuration file can be found at config_old.yml");
+			      rename($this->getDataFolder()."config.yml", $this->getDataFolder()."config_old.yml");
+			      $this->saveResource("config.yml");
+			      return;
+        }
+
     }
 
     public function onInteract(PlayerInteractEvent $event): void{
