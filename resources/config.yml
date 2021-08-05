@@ -1,4 +1,5 @@
 ---
+#DONT CHANGE THE CONFIG VERSION AS IT WELL BREAK EVERYTHING
 config-version: 0.4
 type-shards:
   typeshard1:
