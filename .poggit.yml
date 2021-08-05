@@ -3,6 +3,6 @@ build-by-default: true
 branches:
 - main
 projects:
-  Inventory-Shards:
+  GKitShards_v1.0.0:
     path: ""
 ...
