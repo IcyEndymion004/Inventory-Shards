@@ -79,7 +79,7 @@ class Loader extends PluginBase implements Listener {
             $item->setNamedTagEntry(new StringTag("invdata", $args[0]));
             $item->setNamedTagEntry(new ListTag("ench", []));
             $sender->getInventory()->addItem($item);
-            $sender->sendMessage(TextFormat::GREEN . "Gave you a GOD shard!");
+            $sender->sendMessage(TextFormat::GREEN . "Gave you a $args[0] shard!");
         }
         return true;
     }
