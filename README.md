@@ -4,6 +4,8 @@ This was a plugin that i got from a deal were the other half got scammed
 # Description 
 
 This Plugin Allows you To Add Shards That copy Your Inventory and then on use of the shard Gives you the inventory you saved back
+Video Link to how it works
+https://www.youtube.com/watch?v=JKmBERLnpoE
 
 # More Info
 
