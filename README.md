@@ -1,5 +1,7 @@
 # Inventory Shards
-<a href="https://poggit.pmmp.io/p/InventoryShards"><img src="https://poggit.pmmp.io/shield.state/InventoryShards"></a>
+<a href="https://poggit.pmmp.io/p/InventoryShards"><img src="https://poggit.pmmp.io/shield.state/InventoryShards"></a> <a href="https://poggit.pmmp.io/p/InventoryShards"><img src="https://poggit.pmmp.io/shield.api/InventoryShards"></a>
+
+
 This was a plugin that i got from a deal were the other half got scammed
 
 # Description 
