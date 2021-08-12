@@ -31,3 +31,4 @@ https://cdn.discordapp.com/attachments/507638768514105355/875175673805803540/unk
 Me and him are chill and im good to have this under my name 
 
 If you have any other questions Read the More Info stuff to contact me
+i added this cus people say i stole this plugin and am not allowed to use this Honesty idc i am doing this plugin for the fun of it
