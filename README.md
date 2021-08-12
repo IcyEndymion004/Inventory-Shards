@@ -24,3 +24,10 @@ If You have any Other Questions Dm me on discord at IcyEndymion004#3547
 # Private Version
 
 (i do have a private version of it fully recoded and shit that has a UI and cooldown and perms but that is a plugin i would sell for the right price To Buy dm IcyEndymion004#3547 On Discord)
+
+# To Those who said i stole this with out the perm of sinkerz 
+
+https://cdn.discordapp.com/attachments/507638768514105355/875175673805803540/unknown.png
+Me and him are chill and im good to have this under my name 
+
+If you have any other questions Read the More Info stuff to contact me
