@@ -1,6 +1,8 @@
 # Inventory Shards
 <a href="https://poggit.pmmp.io/p/InventoryShards"><img src="https://poggit.pmmp.io/shield.state/InventoryShards"></a> 
 
+Downloads <a href="https://poggit.pmmp.io/p/InventoryShards"><img src="https://poggit.pmmp.io/shield.dl/InventoryShards"></a> / <a href="https://poggit.pmmp.io/p/InventoryShards"><img src="https://poggit.pmmp.io/shield.dl.total/InventoryShards"></a>
+
 Click This to download the plugin in a .phar file <a href="https://poggit.pmmp.io/p/InventoryShards"><img src="https://poggit.pmmp.io/shield.api/InventoryShards"></a>
 
 
