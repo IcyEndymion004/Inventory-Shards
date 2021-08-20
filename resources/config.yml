@@ -2,6 +2,8 @@
 #DONT CHANGE THE CONFIG VERSION AS IT WELL BREAK EVERYTHING
 config-version: 0.5
 #-------------------------------------------Messages--------------------------------------------------------------
+# Color thing: §
+# https://www.digminecraft.com/lists/color_list_pc.php For color stuff
 NoRoomMessage: "Your inventory doesn't have room!"
 NoShardexists:  "does not exist." #this is after the shard name is there so the name of the shard is there 
 SetInvasShard: "Set your inventory to the shard type: "
