@@ -1,10 +1,12 @@
 ---
 #DONT CHANGE THE CONFIG VERSION AS IT WELL BREAK EVERYTHING
-config-version: 0.4
+config-version: 0.5
 type-shards:
   typeshard1:
     item-name: "Shard1"
     item-lore:
       - "Lore line 1."
       - "Lore line 2."
+      - "Lore Line 3"
+      - "Lore Line 4"
 ...
