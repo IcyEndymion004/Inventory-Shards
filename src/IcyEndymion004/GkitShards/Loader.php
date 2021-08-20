@@ -38,7 +38,7 @@ class Loader extends PluginBase implements Listener {
 			      $this->saveResource("config.yml");
 			      return;
 		    }
-		    if (version_compare("0.4", $this->getConfig()->get("config-version"))) {
+		    if (version_compare("0.5", $this->getConfig()->get("config-version"))) {
             $this->getLogger()->notice("§eYour configuration file is from another version. Updating the Config...");
 			      $this->getLogger()->notice("§eThe old configuration file can be found at config_old.yml");
 			      rename($this->getDataFolder()."config.yml", $this->getDataFolder()."config_old.yml");
@@ -49,13 +49,14 @@ class Loader extends PluginBase implements Listener {
     }
 
     public function onInteract(PlayerInteractEvent $event): void{
+        $NoRoomMessage = $this->getConfig()->get("NoRoomMessage");
         $player = $event->getPlayer();
         $item = $event->getItem();
         if($item->getNamedTag()->hasTag("invdata") && $item->getId() === ItemIds::NETHER_STAR){
             $val = $item->getNamedTag()->getTag("invdata")->getValue();
             $contents = $this->getInvContents($val);
             if($player->getInventory()->firstEmpty() === -1) {
-                $player->sendMessage(TextFormat::RED . "Your inventory doesn't have room!");
+                $player->sendMessage($NoRoomMessage);
                 return;
             }
             foreach($contents as $content){
@@ -73,21 +74,23 @@ class Loader extends PluginBase implements Listener {
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
     {
+        $NoShardexists = $this->getConfig()->get("NoShardexists");
         $types = $this->getConfig()->get("type-shards");
         if($command->getName() === "setshardinv"){
             if(!$sender instanceof Player) return false;
             if(!isset($types[$args[0]])){
-                $sender->sendMessage(TextFormat::RED . $args[0] . " does not exist.");
+                $sender->sendMessage(TextFormat::RED . $args[0] . $NoShardexists);
                 return false;
             }
-            $sender->sendMessage(TextFormat::GREEN . "Set your inventory to the shard type: " . TextFormat::YELLOW . $args[0]);
+            $SetInvasShard = $this->getConfig()->get("SetInvasShard");
+            $sender->sendMessage($SetInvasShard . TextFormat::YELLOW . $args[0]);
             $this->setContentsToFile($args[0], $sender->getInventory()->getContents());
             $sender->getInventory()->clearAll();
         }
         if($command->getName() === "giveshard"){
             if(!$sender instanceof Player) return false;
             if(!isset($types[$args[0]])){
-                $sender->sendMessage(TextFormat::RED . $args[0] . " does not exist.");
+                $sender->sendMessage(TextFormat::RED . $args[0] . " $NoShardexists");
                 return false;
             }
             $item = ItemFactory::get(ItemIds::NETHER_STAR);
