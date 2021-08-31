@@ -18,6 +18,14 @@ https://www.youtube.com/watch?v=JKmBERLnpoE
 
 If You dont fill out the command fully It well error So like if you just do /giveshard that well error im working around it maybe in my next patch
 
+# Todo
+
+[ ] ***Create A Wiki**
+[ ] ***Add A Command To See Whats In a Shard***
+[ ] ***Fix If A Command Is Not Finished Is Errors***
+[ ] ***Add More Configable Stuff***
+[ ] ***Add More Variables ***
+
 # More Info
 
 I may update if needed and add new stuff
