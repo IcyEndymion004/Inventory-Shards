@@ -28,6 +28,8 @@ If You dont fill out the command fully It well error So like if you just do /giv
 
 - [ ] ***Add More Configable Stuff***
 
+- [ ] ***Added Easyer Configable Messages***
+
 - [ ] ***Add More Variables***
 
 # More Info
