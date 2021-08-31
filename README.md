@@ -20,15 +20,15 @@ If You dont fill out the command fully It well error So like if you just do /giv
 
 # Todo
 
-[ ] ***Create A Wiki***
+- [ ] ***Create A Wiki***
 
-[ ] ***Add A Command To See Whats In a Shard***
+- [ ] ***Add A Command To See Whats In a Shard***
 
-[ ] ***Fix If A Command Is Not Finished Is Errors***
+- [ ] ***Fix If A Command Is Not Finished Is Errors***
 
-[ ] ***Add More Configable Stuff***
+- [ ] ***Add More Configable Stuff***
 
-[ ] ***Add More Variables ***
+- [ ] ***Add More Variables ***
 
 # More Info
 
