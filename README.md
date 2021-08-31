@@ -28,7 +28,7 @@ If You dont fill out the command fully It well error So like if you just do /giv
 
 - [ ] ***Add More Configable Stuff***
 
-- [ ] ***Add More Variables ***
+- [ ] ***Add More Variables***
 
 # More Info
 
