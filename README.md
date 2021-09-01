@@ -26,11 +26,11 @@ If You dont fill out the command fully It well error So like if you just do /giv
 
 - [ ] ***Fix If A Command Is Not Finished Is Errors***
 
-- [ ] ***Add More Configable Stuff***
+- [x] ***Add More Configable Stuff***
 
-- [ ] ***Added Easyer Configable Messages***
+- [x] ***Added Easyer Configable Messages***
 
-- [ ] ***Add More Variables***
+- [x] ***Add More Variables***
 
 # More Info
 
