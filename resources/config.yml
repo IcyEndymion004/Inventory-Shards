@@ -1,19 +1,22 @@
 ---
+
 #DONT CHANGE THE CONFIG VERSION AS IT WELL BREAK EVERYTHING
-config-version: 0.6
+config-version: 0.0.7
 #-------------------------------------------Messages--------------------------------------------------------------
 # Color thing: §
 # https://www.digminecraft.com/lists/color_list_pc.php For color stuff
-NoRoomMessage: "Your inventory doesn't have room!"
-NoShardexists:  "does not exist." #this is after the shard name is there so the name of the shard is there 
-SetInvasShard: "Set your inventory to the shard type: "
-#-----------------------------------------------------------------------------------------------------------------
+NoRoomMessage: "§cYour inventory doesn't have room!" #There Are No Custom Tags For This Message
+NoShardexistsmsg:  "§cThe §6{shard} §cShard Does Not Exist" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A Shard
+SetInvasShardmsg: "§aYou Have Set Inventory Of §6{player} §aAs The §6{shard} §aShard" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A Shard
+GivenShardMsg: "§6{player} §aHas Been Given §6{shard}" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A Shard
+#--------------------------------------------Shards----------------------------------------------------------------
+shardID: 'NETHER_STAR' #No Meta Ids Are Supported Yet im lazy and well add it when i add a few more things
 type-shards:
   typeshard1:
     item-name: "Shard1"
     item-lore:
       - "Lore line 1."
       - "Lore line 2."
-      - "Lore Line 3"
-      - "Lore Line 4"
+      - "Lore Line 3."
+      - "Lore Line 4."
 ...
