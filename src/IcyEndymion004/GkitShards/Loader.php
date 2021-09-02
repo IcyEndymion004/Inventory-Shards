@@ -8,19 +8,11 @@ use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\item\Item;
 use pocketmine\item\ItemFactory;
-use pocketmine\item\ItemIds;
-use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\nbt\tag\ListTag;
 use pocketmine\nbt\tag\StringTag;
 use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
-use pocketmine\utils\TextFormat;
-use pocketmine\inventory\transaction\action\SlotChangeAction;
-use pocketmine\nbt\tag\ByteTag;
-
-use IcyEndymion004\GkitShards\libs\muqsit\invmenu\inventories\BaseFakeInventory;
-use IcyEndymion004\GkitShards\libs\muqsit\invmenu\inventories\DoubleChestInventory;
 use IcyEndymion004\GkitShards\libs\muqsit\invmenu\InvMenuHandler;
 use IcyEndymion004\GkitShards\libs\muqsit\invmenu\InvMenu;
 use Stringable;
@@ -46,7 +38,7 @@ class Loader extends PluginBase implements Listener {
 			      $this->saveResource("config.yml");
 			      return;
 		    }
-		    if (version_compare("0.0.7", $this->getConfig()->get("config-version"))) {
+		    if (version_compare("0.0.9", $this->getConfig()->get("config-version"))) {
             $this->getLogger()->notice("§eYour configuration file is from another version. Updating the Config...");
 			      $this->getLogger()->notice("§eThe old configuration file can be found at config_old.yml");
 			      rename($this->getDataFolder()."config.yml", $this->getDataFolder()."config_old.yml");
@@ -62,7 +54,7 @@ class Loader extends PluginBase implements Listener {
         $NoRoomMessage = $this->getConfig()->get("NoRoomMessage");
         $player = $event->getPlayer();
         $item = $event->getItem();
-        if($item->getNamedTag()->hasTag("invdata")){
+        if($item->getNamedTag()->hasTag("invdata") && $item->getNameTag()->hasTag("ShardTagVerifyed")){
             $val = $item->getNamedTag()->getTag("invdata")->getValue();
             $contents = $this->getInvContents($val);
             if($player->getInventory()->firstEmpty() === -1) {
@@ -111,6 +103,25 @@ class Loader extends PluginBase implements Listener {
             $sender->sendMessage($SetInvasShard);
             $this->setContentsToFile($args[0], $sender->getInventory()->getContents());
         }
+        if($command->getName() === "seeshardinfo"){
+            if(!$sender instanceof Player) return false;
+            if(!isset($types[$args[0]])){
+                $sender->sendMessage($NoShardexists);
+                return false;
+            }
+            $guiname = str_replace("{shard}", $shardname, $this->getConfig()->get("GUIname"));
+    
+            $menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
+            $menu->readonly();
+            $menu->setName($guiname);
+            $inv = $menu->getInventory();
+            $val = $args[0];
+            $contents = $this->getInvContents($val);
+            foreach($contents as $item) {
+                $inv->addItem($item);
+            }
+            $menu->send($sender);   
+            }
         if($command->getName() === "giveshard"){
             if(!$sender instanceof Player) return false;
             if(!isset($types[$args[0]])){ 
@@ -124,6 +135,7 @@ class Loader extends PluginBase implements Listener {
             $item->setLore($this->getConfig()->get("type-shards")[$args[0]]["item-lore"]);
             $item->setNamedTagEntry(new StringTag("invdata", $args[0]));
             $item->setNamedTagEntry(new ListTag("ench", []));
+            $item->setNamedTagEntry(new StringTag("ShardTagVerifyed", $args[0]));
             $sender->getInventory()->addItem($item);
             $sender->sendMessage($GivenShard);
         }
