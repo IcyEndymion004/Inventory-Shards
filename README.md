@@ -22,19 +22,19 @@ If You dont fill out the command fully It well error So like if you just do /giv
 
 # Todo
 
-- [ ] ***Create A Wiki***
+- **[ ]** ***Create A Wiki***
 
-- [ ] ***Add A Command To See Whats In a Shard***
+- **[ ]** ***Add A Command To See Whats In a Shard***
 
-- [x] ***Fix If A Command Is Not Finished Is Errors***
+- **[x]** ***Fix If A Command Is Not Finished Is Errors***
 
-- [x] ***Add Meta And Id Support
+- **[x]** ***Add Meta And Id Support***
 
-- [x] ***Add More Configable Stuff***
+- **[x]** ***Add More Configable Stuff***
 
-- [x] ***Added Easyer Configable Messages***
+- **[x]** ***Added Easyer Configable Messages***
 
-- [x] ***Add More Variables***
+- **[x]** ***Add More Variables***
 
 # More Info
 
