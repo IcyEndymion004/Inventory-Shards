@@ -54,7 +54,8 @@ class Loader extends PluginBase implements Listener {
         $NoRoomMessage = $this->getConfig()->get("NoRoomMessage");
         $player = $event->getPlayer();
         $item = $event->getItem();
-        if($item->getNamedTag()->hasTag("invdata") && $item->getNameTag()->hasTag("ShardTagVerifyed")){
+        $tagcheck = $item->getNamedTag();
+        if($tagcheck->hasTag("invdata") && $tagcheck->hasTag("ShardTagVerifyed")){
             $val = $item->getNamedTag()->getTag("invdata")->getValue();
             $contents = $this->getInvContents($val);
             if($player->getInventory()->firstEmpty() === -1) {
