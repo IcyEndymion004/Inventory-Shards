@@ -104,14 +104,6 @@ class Loader extends PluginBase implements Listener {
             $sender->sendMessage($SetInvasShard);
             $this->setContentsToFile($args[0], $sender->getInventory()->getContents());
         }
-        if($command->getName() === "seeshardinfo"){
-            if(!$sender instanceof Player) return false;
-            if(!isset($types[$args[0]])){
-                $sender->sendMessage($NoShardexists);
-                return false;
-            }
-            $this->seeshardinfo($sender);
-        }
         if($command->getName() === "giveshard"){
             if(!$sender instanceof Player) return false;
             if(!isset($types[$args[0]])){ 
@@ -154,8 +146,5 @@ class Loader extends PluginBase implements Listener {
             $data[$key] = Item::jsonDeserialize($value);
         }
         return $data;
-    }
-    public function seeshardinfo($sender){
-    
     }
 }
