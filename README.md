@@ -26,7 +26,9 @@ If You dont fill out the command fully It well error So like if you just do /giv
 
 - [ ] ***Add A Command To See Whats In a Shard***
 
-- [ ] ***Fix If A Command Is Not Finished Is Errors***
+- [x] ***Fix If A Command Is Not Finished Is Errors***
+
+- [x] ***Add Meta And Id Support
 
 - [x] ***Add More Configable Stuff***
 
