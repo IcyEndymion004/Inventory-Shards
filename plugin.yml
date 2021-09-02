@@ -1,5 +1,5 @@
 name: InventoryShards
-version: 0.0.7
+version: 0.0.9
 api: 3.0.0
 main: IcyEndymion004\GkitShards\Loader
 author: IcyEndymion004
@@ -13,6 +13,9 @@ commands:
     description: "Gives You A Inventory Shard"
     aliases: [getsh]
     permission: inventory.command.giveshard
+  seeshardinfo:
+    description: "Allows You To See Into A Shards Inventory"
+    aliases: [seesh]
 permissions:
   inventory.command.setshard:
     description: SetShard Command Perm
@@ -20,3 +23,6 @@ permissions:
   inventory.command.giveshard:
     description: GiveShard Command Perm
     default: true
+  inventory.command.seeshard:
+    description: SeeShardinfo Command Perm
+    default: op
