@@ -111,26 +111,6 @@ class Loader extends PluginBase implements Listener {
             $sender->sendMessage($SetInvasShard);
             $this->setContentsToFile($args[0], $sender->getInventory()->getContents());
         }
-        if($command->getName() === "seeshardinfo"){
-            if(!$sender instanceof Player) return false;
-            if(!isset($types[$args[0]])){
-                $sender->sendMessage($NoShardexists);
-                return false;
-            }
-            $guiname = str_replace("{shard}", $shardname, $this->getConfig()->get("GUIname"));
-    
-            $menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
-            $menu->readonly();
-            $menu->setName($guiname);
-            $inv = $menu->getInventory();
-            $val = $args[0];
-            $contents = $this->getInvContents($val);
-            foreach($contents as $content){
-            $inv->setContents([$inv->addItem($content)]
-            );
-        }
-            $menu->send($sender);   
-            }
         if($command->getName() === "giveshard"){
             if(!$sender instanceof Player) return false;
             if(!isset($types[$args[0]])){ 
