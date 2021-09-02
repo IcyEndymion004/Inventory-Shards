@@ -24,7 +24,7 @@ If You dont fill out the command fully It well error So like if you just do /giv
 
 - [ ] ***Create A Wiki***
 
-- [ ] ***Add A Command To See Whats In a Shard***
+- [x] ***Add A Command To See Whats In a Shard***
 
 - [x] ***Fix If A Command Is Not Finished Is Errors***
 
