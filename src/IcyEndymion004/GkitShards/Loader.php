@@ -62,8 +62,7 @@ class Loader extends PluginBase implements Listener {
         $NoRoomMessage = $this->getConfig()->get("NoRoomMessage");
         $player = $event->getPlayer();
         $item = $event->getItem();
-        $ShardItemId = $this->getConfig()->get("shardID");
-        if($item->getNamedTag()->hasTag("invdata") && $item->getId() === ItemIds::$ShardItemId){
+        if($item->getNamedTag()->hasTag("invdata")){
             $val = $item->getNamedTag()->getTag("invdata")->getValue();
             $contents = $this->getInvContents($val);
             if($player->getInventory()->firstEmpty() === -1) {
@@ -86,14 +85,22 @@ class Loader extends PluginBase implements Listener {
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
     {  
 
+        $types = $this->getConfig()->get("type-shards");
+        if(!isset($types[$args[0]])){ 
+            
+            $invaildshard = str_replace("{shard}", $args[0], $this->getConfig()->get("InvaidShard"));
+            $invaildshard = str_replace("{player}", $sender->getName(), $invaildshard);
+                $sender->sendMessage($invaildshard);
+                return false;
+        }
         $shardname = $args[0]; //The Thing You Entered for the shard is not a vaild shard
+
         $NoShardexists = str_replace("{shard}", $shardname, $this->getConfig()->get("NoShardexistsmsg"));
         $NoShardexists = str_replace("{player}", $sender->getName(), $NoShardexists);
         $SetInvasShard = str_replace("{shard}", $shardname, $this->getConfig()->get("SetInvasShardmsg"));
         $SetInvasShard = str_replace("{player}", $sender->getName(), $SetInvasShard);
         $GivenShard = str_replace("{shard}", $shardname, $this->getConfig()->get("GivenShardMsg"));
         $GivenShard = str_replace("{player}", $sender->getName(), $GivenShard);
-        $types = $this->getConfig()->get("type-shards");
         
         if($command->getName() === "setshardinv"){
             if(!$sender instanceof Player) return false;
@@ -104,6 +111,26 @@ class Loader extends PluginBase implements Listener {
             $sender->sendMessage($SetInvasShard);
             $this->setContentsToFile($args[0], $sender->getInventory()->getContents());
         }
+        if($command->getName() === "seeshardinfo"){
+            if(!$sender instanceof Player) return false;
+            if(!isset($types[$args[0]])){
+                $sender->sendMessage($NoShardexists);
+                return false;
+            }
+            $guiname = str_replace("{shard}", $shardname, $this->getConfig()->get("GUIname"));
+    
+            $menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
+            $menu->readonly();
+            $menu->setName($guiname);
+            $inv = $menu->getInventory();
+            $val = $args[0];
+            $contents = $this->getInvContents($val);
+            foreach($contents as $content){
+            $inv->setContents([$inv->addItem($content)]
+            );
+        }
+            $menu->send($sender);   
+            }
         if($command->getName() === "giveshard"){
             if(!$sender instanceof Player) return false;
             if(!isset($types[$args[0]])){ 
@@ -111,7 +138,8 @@ class Loader extends PluginBase implements Listener {
                 return false;
             }
             $ShardItemId = $this->getConfig()->get("shardID");
-            $item = ItemFactory::get(ItemIds::$ShardItemId);
+            $ShardItemMeta = $this->getConfig()->get("shardMeta");
+            $item = ItemFactory::get($ShardItemId, $ShardItemMeta, 1);
             $item->setCustomName($this->getConfig()->get("type-shards")[$args[0]]["item-name"]);
             $item->setLore($this->getConfig()->get("type-shards")[$args[0]]["item-lore"]);
             $item->setNamedTagEntry(new StringTag("invdata", $args[0]));
@@ -146,5 +174,5 @@ class Loader extends PluginBase implements Listener {
             $data[$key] = Item::jsonDeserialize($value);
         }
         return $data;
-    }
+}
 }
