@@ -78,13 +78,15 @@ class Loader extends PluginBase implements Listener {
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
     {  
 
+
+
+        if(!isset($args[0])) return false;
         $types = $this->getConfig()->get("type-shards");
         if(!isset($types[$args[0]])){ 
-            
-            $invaildshard = str_replace("{shard}", $args[0], $this->getConfig()->get("InvaidShard"));
-            $invaildshard = str_replace("{player}", $sender->getName(), $invaildshard);
-                $sender->sendMessage($invaildshard);
-                return false;
+        $invaildshard = str_replace("{shard}", $args[0], $this->getConfig()->get("InvaidShard"));
+        $invaildshard = str_replace("{player}", $sender->getName(), $invaildshard);
+        $sender->sendMessage($invaildshard);
+        return false;
         }
         $shardname = $args[0]; //The Thing You Entered for the shard is not a vaild shard
 
