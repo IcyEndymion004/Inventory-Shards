@@ -14,6 +14,8 @@ This Plugin Allows you To Add Shards That copy Your Inventory and then on use of
 Video Link to how it works
 https://www.youtube.com/watch?v=JKmBERLnpoE
 
+This is a ready to go plugin were ever you download it from 
+
 # Known Errors
 
 If You dont fill out the command fully It well error So like if you just do /giveshard that well error im working around it maybe in my next patch
