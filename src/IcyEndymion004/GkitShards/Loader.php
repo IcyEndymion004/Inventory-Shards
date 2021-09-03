@@ -14,7 +14,7 @@ use pocketmine\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use IcyEndymion004\GkitShards\libs\muqsit\invmenu\InvMenu;
-use IcyEndymion004\GkitShards\libs\muqsit\invmenu\InvMenuHandler;`
+use IcyEndymion004\GkitShards\libs\muqsit\invmenu\InvMenuHandler;
 use Stringable;
 
 class Loader extends PluginBase implements Listener {
