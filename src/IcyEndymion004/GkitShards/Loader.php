@@ -115,7 +115,7 @@ class Loader extends PluginBase implements Listener {
             $guiname = str_replace("{shard}", $shardname, $this->getConfig()->get("GUIname"));
     
             $menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
-            $menu->readonly();
+            $menu->setListener(InvMenu::readonly());
             $menu->setName($guiname);
             $inv = $menu->getInventory();
             $val = $args[0];
