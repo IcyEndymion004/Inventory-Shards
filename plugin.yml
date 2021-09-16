@@ -19,10 +19,10 @@ commands:
 permissions:
   inventory.command.setshard:
     description: SetShard Command Perm
-    default: true
+    default: op
   inventory.command.giveshard:
     description: GiveShard Command Perm
-    default: true
+    default: op
   inventory.command.seeshard:
     description: SeeShardinfo Command Perm
     default: op
