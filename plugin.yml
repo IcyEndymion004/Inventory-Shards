@@ -1,8 +1,10 @@
 name: InventoryShards
 version: 0.0.9
-api: 3.0.0
+api: 4.0.0
 main: IcyEndymion004\GkitShards\Loader
 author: IcyEndymion004
+authors:
+  - Sink
 website: https://github.com/IcyEndymion004/Inventory-Shards
 commands:
   setshardinv:
