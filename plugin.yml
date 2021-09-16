@@ -2,9 +2,9 @@ name: InventoryShards
 version: 0.0.9
 api: 4.0.0
 main: IcyEndymion004\GkitShards\Loader
-author: IcyEndymion004
 authors:
-  - Sink
+  - Sink (qt)
+  - IcyEndymion004
 website: https://github.com/IcyEndymion004/Inventory-Shards
 commands:
   setshardinv:
@@ -21,10 +21,10 @@ commands:
 permissions:
   inventory.command.setshard:
     description: SetShard Command Perm
-    default: true
+    default: op
   inventory.command.giveshard:
     description: GiveShard Command Perm
-    default: true
+    default: op
   inventory.command.seeshard:
     description: SeeShardinfo Command Perm
     default: op
