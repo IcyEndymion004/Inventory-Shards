@@ -2,30 +2,32 @@
 
 namespace IcyEndymion004\GkitShards;
 
+use muqsit\invmenu\transaction\InvMenuTransaction;
+use muqsit\invmenu\transaction\InvMenuTransactionResult;
+use pocketmine\block\VanillaBlocks;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerInteractEvent;
+use pocketmine\event\player\PlayerItemUseEvent;
+use pocketmine\item\enchantment\ItemFlags;
 use pocketmine\item\Item;
 use pocketmine\item\ItemFactory;
-use pocketmine\nbt\tag\ListTag;
-use pocketmine\nbt\tag\StringTag;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
-use IcyEndymion004\GkitShards\libs\muqsit\invmenu\InvMenuHandler;
-use IcyEndymion004\GkitShards\libs\muqsit\invmenu\InvMenu;
-use Stringable;
+use muqsit\invmenu\InvMenu;
+use muqsit\invmenu\InvMenuHandler;
+use pocketmine\item\enchantment\Enchantment;
+use pocketmine\item\enchantment\EnchantmentInstance;
+use pocketmine\data\bedrock\EnchantmentIdMap;
 
 class Loader extends PluginBase implements Listener {
 
-    /**
-     * @var Config
-     */
-    private $shardData;
+    /** @var Config */
+    protected Config $shardData;
 
-    public function onEnable()
-    {
+    protected function onEnable(): void{
         $this->getServer()->getPluginManager()->registerEvents($this,$this);
         $this->saveDefaultConfig();
         $this->shardData = new Config($this->getDataFolder() . "sharddata.yml", Config::YAML);  
@@ -48,14 +50,15 @@ class Loader extends PluginBase implements Listener {
         if(!InvMenuHandler::isRegistered()){
             InvMenuHandler::register($this);
         }
+        EnchantmentIdMap::getInstance()->register(-1, new Enchantment(-1, "Glow", 1, ItemFlags::ALL, ItemFlags::NONE));
     }
 
-    public function onInteract(PlayerInteractEvent $event): void{
+    public function onItemUse(PlayerItemUseEvent $event): void{
         $NoRoomMessage = $this->getConfig()->get("NoRoomMessage");
         $player = $event->getPlayer();
         $item = $event->getItem();
         $tagcheck = $item->getNamedTag();
-        if($tagcheck->hasTag("invdata") && $tagcheck->hasTag("ShardTagVerifyed")){
+        if($tagcheck->getTag("invdata") !== null && $tagcheck->getTag("ShardTagVerifyed") !== null){
             $val = $item->getNamedTag()->getTag("invdata")->getValue();
             $contents = $this->getInvContents($val);
             if($player->getInventory()->firstEmpty() === -1) {
@@ -65,28 +68,18 @@ class Loader extends PluginBase implements Listener {
             foreach($contents as $content){
                 $player->getInventory()->addItem($content);
             }
-            self::pop($player);
+            $item = $player->getInventory()->getItemInHand();
+            $count = $item->getCount() - 1;
+            $player->getInventory()->setItemInHand($count <= 0 ? VanillaBlocks::AIR()->asItem() : $item->setCount($count));
         }
     }
 
-    public static function pop(Player $player): void{
-        $index = $player->getInventory()->getHeldItemIndex();
-        $item = $player->getInventory()->getItemInHand();
-        $player->getInventory()->setItem($index, $item->setCount($item->getCount() - 0.5));
-    }
-
-    public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
-    {  
-
-
-
+    public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool{
         if(!isset($args[0])) return false;
         $types = $this->getConfig()->get("type-shards");
-        if(!isset($types[$args[0]])){ 
-        $invaildshard = str_replace("{shard}", $args[0], $this->getConfig()->get("InvaidShard"));
-        $invaildshard = str_replace("{player}", $sender->getName(), $invaildshard);
-        $sender->sendMessage($invaildshard);
-        return false;
+        if(!isset($types[$args[0]])){
+            $sender->sendMessage(str_replace(["{shard}", "{player}"], [$args[0], $sender->getName()],$this->getConfig()->get("InvalidShard")));
+            return false;
         }
         $shardname = $args[0]; //The Thing You Entered for the shard is not a vaild shard
 
@@ -96,7 +89,7 @@ class Loader extends PluginBase implements Listener {
         $SetInvasShard = str_replace("{player}", $sender->getName(), $SetInvasShard);
         $GivenShard = str_replace("{shard}", $shardname, $this->getConfig()->get("GivenShardMsg"));
         $GivenShard = str_replace("{player}", $sender->getName(), $GivenShard);
-        
+
         if($command->getName() === "setshardinv"){
             if(!$sender instanceof Player) return false;
             if(!isset($types[$args[0]])){
@@ -113,9 +106,11 @@ class Loader extends PluginBase implements Listener {
                 return false;
             }
             $guiname = str_replace("{shard}", $shardname, $this->getConfig()->get("GUIname"));
-    
+
             $menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
-            $menu->setListener(InvMenu::readonly());
+            $menu->setListener(function (InvMenuTransaction $transaction): InvMenuTransactionResult{
+                return $transaction->discard();
+            });
             $menu->setName($guiname);
             $inv = $menu->getInventory();
             $val = $args[0];
@@ -123,22 +118,21 @@ class Loader extends PluginBase implements Listener {
             foreach($contents as $item) {
                 $inv->addItem($item);
             }
-            $menu->send($sender);   
-            }
+            $menu->send($sender);
+        }
         if($command->getName() === "giveshard"){
             if(!$sender instanceof Player) return false;
-            if(!isset($types[$args[0]])){ 
+            if(!isset($types[$args[0]])){
                 $sender->sendMessage($NoShardexists);
                 return false;
             }
             $ShardItemId = $this->getConfig()->get("shardID");
             $ShardItemMeta = $this->getConfig()->get("shardMeta");
-            $item = ItemFactory::get($ShardItemId, $ShardItemMeta, 1);
+            $item = ItemFactory::getInstance()->get($ShardItemId, $ShardItemMeta, 1);
             $item->setCustomName($this->getConfig()->get("type-shards")[$args[0]]["item-name"]);
             $item->setLore($this->getConfig()->get("type-shards")[$args[0]]["item-lore"]);
-            $item->setNamedTagEntry(new StringTag("invdata", $args[0]));
-            $item->setNamedTagEntry(new ListTag("ench", []));
-            $item->setNamedTagEntry(new StringTag("ShardTagVerifyed", $args[0]));
+            $item->addEnchantment(new EnchantmentInstance(EnchantmentIdMap::getInstance()->fromId(-1)));
+            $item->setNamedTag($item->getNamedTag()->setString("invdata", $args[0])->setString("ShardTagVerifyed", $args[0]));
             $sender->getInventory()->addItem($item);
             $sender->sendMessage($GivenShard);
         }
@@ -169,5 +163,5 @@ class Loader extends PluginBase implements Listener {
             $data[$key] = Item::jsonDeserialize($value);
         }
         return $data;
-}
+    }
 }

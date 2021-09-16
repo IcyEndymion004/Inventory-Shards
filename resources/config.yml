@@ -8,13 +8,13 @@ config-version: 0.0.9
 NoRoomMessage: "§cYour inventory doesn't have room!" #There Are No Custom Tags For This Message
 NoShardexistsmsg:  "§cThe §6{shard} §cShard Does Not Exist" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A Shard
 SetInvasShardmsg: "§aYou Have Set Inventory Of §6{player} §aAs The §6{shard} §aShard" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A Shard
-InvaidShard: "§6{shard} §cIs Not Vaild" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A Shard
+InvalidShard: "§6{shard} §cIs Not Vaild" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A Shard
 GivenShardMsg: "§6{player} §aHas Been Given §6{shard}" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A Shard
 #--------------------------------------------GUI-------------------------------------------------------------------
 GUIname: "§6{shard} §1Data" #Custom Tags:
 #--------------------------------------------Shards----------------------------------------------------------------
-shardID: '450' 
-ShardMeta: '0'
+shardID: 450
+ShardMeta: 0
 type-shards:
   typeshard1:
     item-name: "Shard1"
