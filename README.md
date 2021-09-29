@@ -34,8 +34,6 @@ None That i know of
 
 - [ ] ***Add the Choice to Cost Money to open the shard***
 
-- [ ] ***Add An Open msg***
-
 - [ ] ***Add the choice to set some msgs to popups/titles/subtitles***
 
 - [ ] ***Add some Better Changes for Player side use***
