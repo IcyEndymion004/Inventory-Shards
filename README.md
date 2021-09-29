@@ -24,17 +24,17 @@ If You dont fill out the command fully It well error So like if you just do /giv
 
 - [ ] ***Create A Wiki***
 
-- [x] ***Add A Command To See Whats In a Shard***
+- [ ] ***Create An List Cmd That Opens A ui with all the shards and when you use one you can make the choice to set your inv for it or give it or see its inv***
 
-- [x] ***Fix If A Command Is Not Finished Is Errors***
+- [ ] ***Add An Shard Edit Cmd***
 
-- [x] ***Add Meta And Id Support***
+- [ ] ***Add the Choice to Cost Money to open the shard***
 
-- [x] ***Add More Configable Stuff***
+- [ ] ***Add An Open msg***
 
-- [x] ***Added Easyer Configable Messages***
+- [ ] ***Add the choice to set some msgs to popups/titles/subtitles***
 
-- [x] ***Add More Variables***
+- [ ] ***Add some Better Changes for Player side use***
 
 ## More Info
 
