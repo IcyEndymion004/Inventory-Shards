@@ -22,7 +22,7 @@ None That i know of
 
 ## Usage 
 
-[Usage](https://github.com/IcyEndymion004/Inventory-Shards/blob/main/Usage.md)
+### [Usage](https://github.com/IcyEndymion004/Inventory-Shards/blob/main/Usage.md)
 
 ## Todo
 
