@@ -2,9 +2,21 @@
 
 #DONT CHANGE THE CONFIG VERSION AS IT WELL BREAK EVERYTHING
 config-version: 1.0.0
+EconamyEnabled: true #Please make sure you Have EconomyAPI Working On Your server
+#-------------------------------------------Messagestypes---------------------------------------------------------
+# 1 = message
+# 2 = popup
+# 3 = title
+NoShardExistsType: 2
+SetinvshardType: 2
+giveshardType: 2
+typeNoRoomMessage: 2
+typeToPoor: 2
+typeEditShard: 2
 #-------------------------------------------Messages--------------------------------------------------------------
 # Color thing: §
 # https://www.digminecraft.com/lists/color_list_pc.php For color stuff
+ToPoor: "§cYou Need§6 {cost} §cTo Claim This Shard"
 NoRoomMessage: "§cYour inventory doesn't have room!" #There Are No Custom Tags For This Message
 NoShardexistsmsg:  "§cThe §6{shard} §cShard Does Not Exist" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A Shard
 SetInvasShardmsg: "§aYou Have Set Inventory Of §6{player} §aAs The §6{shard} §aShard" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A Shard
@@ -22,6 +34,7 @@ type-shards:
   typeshard1:
     shardID: '450' 
     ShardMeta: '0'
+    claimcost: "15" #must be an int
     item-name: "Shard1"
     item-lore:
       - "Lore line 1."
@@ -31,6 +44,7 @@ type-shards:
   typeshard2:
     shardID: '450' 
     ShardMeta: '0'
+    claimcost: "15"
     item-name: "Shard1"
     item-lore:
       - "Lore line 1."
