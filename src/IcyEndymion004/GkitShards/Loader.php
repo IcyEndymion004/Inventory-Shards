@@ -19,6 +19,7 @@ use muqsit\invmenu\transaction\InvMenuTransaction;
 use muqsit\invmenu\transaction\InvMenuTransactionResult;
 use pocketmine\inventory\Inventory;
 use IcyEndymion004\GkitShards\libs\jojoe77777\FormAPI\SimpleForm;
+use pocketmine\Server;
 use Stringable;
 
 class Loader extends PluginBase implements Listener {
@@ -30,6 +31,7 @@ class Loader extends PluginBase implements Listener {
 
     public function onEnable()
     {
+        
         $this->getServer()->getPluginManager()->registerEvents($this,$this);
         $this->saveDefaultConfig();
         $this->shardData = new Config($this->getDataFolder() . "sharddata.yml", Config::YAML);  
@@ -56,6 +58,9 @@ class Loader extends PluginBase implements Listener {
 
     public function onInteract(PlayerInteractEvent $event): void{
         $NoRoomMessage = $this->getConfig()->get("NoRoomMessage");
+        $NoRoomMessagetype = $this->getConfig()->get("typeNoRoomMessage");
+        $poorboitype = $this->getConfig()->get("typeToPoor");
+        $poorboi = $this->getConfig()->get("ToPoor");
         $player = $event->getPlayer();
         $item = $event->getItem();
         $tagcheck = $item->getNamedTag();
@@ -63,13 +68,42 @@ class Loader extends PluginBase implements Listener {
             $val = $item->getNamedTag()->getTag("invdata")->getValue();
             $contents = $this->getInvContents($val);
             if($player->getInventory()->firstEmpty() === -1) {
-                $player->sendMessage($NoRoomMessage);
-                return;
+            if($NoRoomMessagetype === 1){
+            $player->sendMessage($NoRoomMessage);
+            return;
+            }
+            if($NoRoomMessagetype === 2){
+            $player->sendPopup($NoRoomMessage);
+            return;
+            }
+            if($NoRoomMessagetype === 3)
+            $player->sendTitle($NoRoomMessage);
+            return;
+            }  
+            
+            $econ = $this->getConfig()->get("EconamyEnabled");
+            if($econ === true){
+            $deduction = $item->getNamedTag()->getTag("claimcost")->getValue();
+            $poorboi = str_replace("{cost}", $deduction, $this->getConfig()->get("ToPoor"));
+            $econbase = Server::getInstance()->getPluginManager()->getPlugin("EconomyAPI")->getInstance();
+            if($econbase->myMoney($player) > $deduction){
+            $econbase->reduceMoney($player, $deduction);
+            }else{
+            if($poorboitype === 1){
+            $player->sendMessage($poorboi);
+            }
+            if($poorboitype === 2){
+            $player->sendPopup($poorboi);
+            }
+            if($poorboitype === 3){
+            $player->sendTitle($poorboi);
+            }  
             }
             foreach($contents as $content){
                 $player->getInventory()->addItem($content);
             }
             self::pop($player);
+            }
         }
     }
 
@@ -100,22 +134,54 @@ class Loader extends PluginBase implements Listener {
         $SetInvasShard = str_replace("{player}", $sender->getName(), $SetInvasShard);
         $GivenShard = str_replace("{shard}", $shardname, $this->getConfig()->get("GivenShardMsg"));
         $GivenShard = str_replace("{player}", $sender->getName(), $GivenShard);
+
+        $msgtypeNoShardExists = $this->getConfig()->get("NoShardExistsType");
+        $msgtypeSetInvShard = $this->getConfig()->get("SetinvshardType");
+        $msgtypegiveshard = $this->getConfig()->get("giveshardType");
         
         if($command->getName() === "setshardinv"){
             if(!$sender instanceof Player) return false;
             if(!isset($types[$args[0]])){
+                if($msgtypeNoShardExists === 1){
                 $sender->sendMessage($NoShardexists);
                 return false;
+                }
+                if($msgtypeNoShardExists === 2){
+                $sender->sendPopup($NoShardexists);
+                return false;
+                }
+                if($msgtypeNoShardExists === 3){
+                $sender->sendTitle($NoShardexists);
+                return false;
+                }  
             }
-            $sender->sendMessage($SetInvasShard);
+            if($msgtypeSetInvShard === 1){
+                $sender->sendMessage($SetInvasShard);
+                }
+                if($msgtypeSetInvShard === 2){
+                $sender->sendPopup($SetInvasShard);
+                }
+                if($msgtypeSetInvShard === 3){
+                $sender->sendTitle($SetInvasShard);
+                } 
             $this->setContentsToFile($args[0], $sender->getInventory()->getContents());
         }
 
         if($command->getName() === "seeshardinfo"){
             if(!$sender instanceof Player) return false;
             if(!isset($types[$args[0]])){
+                if($msgtypeNoShardExists === 1){
                 $sender->sendMessage($NoShardexists);
                 return false;
+                }
+                if($msgtypeNoShardExists === 2){
+                $sender->sendPopup($NoShardexists);
+                return false;
+                }
+                if($msgtypeNoShardExists === 3){
+                $sender->sendTitle($NoShardexists);
+                return false;
+                }  
             }
             $guiname = str_replace("{shard}", $shardname, $this->getConfig()->get("GUIname"));
     
@@ -133,8 +199,18 @@ class Loader extends PluginBase implements Listener {
             if($command->getName() === "editshard"){
                 if(!$sender instanceof Player) return false;
                 if(!isset($types[$args[0]])){
+                    if($msgtypeNoShardExists === 1){
                     $sender->sendMessage($NoShardexists);
                     return false;
+                    }
+                    if($msgtypeNoShardExists === 2){
+                    $sender->sendPopup($NoShardexists);
+                    return false;
+                    }
+                    if($msgtypeNoShardExists === 3){
+                    $sender->sendTitle($NoShardexists);
+                    return false;
+                    }  
                 }
                 $guiname = str_replace("{shard}", $shardname, $this->getConfig()->get("GUIname"));
                 $this->getConfig()->set(strval($sender->getName()));   
@@ -147,14 +223,22 @@ class Loader extends PluginBase implements Listener {
                         /** @var Item $value */
                         $contents[$key] = $value->jsonSerialize();
                     }
-                    $shardname = $this->getConfig()->get($player);
+                    $msgtypeeditshardcomplete = $this->getConfig()->get("typeEditShard");
+                    $shardname = $this->getConfig()->get((strval($player->getName())));
                     $editshardcomplete = str_replace("{shard}", $shardname, $this->getConfig()->get("ShardEditComplete"));
                     $editshardcomplete = str_replace("{player}", $player->getName(), $editshardcomplete);
-                    $player->sendMessage($editshardcomplete);
-                    $player = (strval($player->getName()));
+                    if($msgtypeeditshardcomplete === 1){
+                        $player->sendMessage($editshardcomplete);
+                        }
+                        if($msgtypeeditshardcomplete === 2){
+                        $player->sendPopup($editshardcomplete);
+                        }
+                        if($msgtypeeditshardcomplete === 3){
+                        $player->sendTitle($editshardcomplete);
+                        }  
                     $this->getShardData()->set($shardname, $contents);
                     $this->getShardData()->save();
-                    $this->getConfig()->remove($player);
+                    $this->getConfig()->remove((strval($player->getName())));
                 });
                 $menu->setName($guiname);
                 $inv = $menu->getInventory();
@@ -167,9 +251,19 @@ class Loader extends PluginBase implements Listener {
                 }
         if($command->getName() === "giveshard"){
             if(!$sender instanceof Player) return false;
-            if(!isset($types[$args[0]])){ 
+            if(!isset($types[$args[0]])){
+                if($msgtypeNoShardExists === 1){
                 $sender->sendMessage($NoShardexists);
                 return false;
+                }
+                if($msgtypeNoShardExists === 2){
+                $sender->sendPopup($NoShardexists);
+                return false;
+                }
+                if($msgtypeNoShardExists === 3){
+                $sender->sendTitle($NoShardexists);
+                return false;
+                }  
             }
             $ShardItemId = ($this->getConfig()->get("type-shards")[$args[0]]["shardID"]);
             $ShardItemMeta = ($this->getConfig()->get("type-shards")[$args[0]]["ShardMeta"]);
@@ -177,10 +271,21 @@ class Loader extends PluginBase implements Listener {
             $item->setCustomName($this->getConfig()->get("type-shards")[$args[0]]["item-name"]);
             $item->setLore($this->getConfig()->get("type-shards")[$args[0]]["item-lore"]);
             $item->setNamedTagEntry(new StringTag("invdata", $args[0]));
+            $claimcost = $this->getConfig()->get("type-shards")[$args[0]]["claimcost"];
+            $item->setNamedTagEntry(new StringTag("claimcost", $claimcost));
+            $item->setNamedTagEntry(new StringTag("invdata", $args[0]));
             $item->setNamedTagEntry(new ListTag("ench", []));
             $item->setNamedTagEntry(new StringTag("ShardTagVerifyed", $args[0]));
             $sender->getInventory()->addItem($item);
-            $sender->sendMessage($GivenShard);
+            if($msgtypegiveshard === 1){
+                $sender->sendMessage($GivenShard);
+                }
+                if($msgtypegiveshard === 2){
+                $sender->sendPopup($GivenShard);
+                }
+                if($msgtypegiveshard === 3){
+                $sender->sendTitle($GivenShard);
+                } 
         }
         return true;
     }
