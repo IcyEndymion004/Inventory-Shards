@@ -26,13 +26,13 @@ None That i know of
 
 ## Todo
 
-- [ ] ***Create A Wiki***
+- [ ] ***Create A Wiki*** (prob never gonna happend by me xD)
 
 - [x] ***Create An List Cmd That Opens A ui with all the shards and when you use one you can make the choice to set your inv for it or give it or see its inv***
 
 - [x] ***Add An Shard Edit Cmd***
 
-- [ ] ***Add the Choice to Cost Money to open the shard***
+- [ ] ***Add the Choice to Cost Money to open the shard*** 
 
 - [ ] ***Add the choice to set some msgs to popups/titles/subtitles***
 
