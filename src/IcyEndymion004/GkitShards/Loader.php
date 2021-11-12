@@ -15,6 +15,10 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 use IcyEndymion004\GkitShards\libs\muqsit\invmenu\InvMenuHandler;
 use IcyEndymion004\GkitShards\libs\muqsit\invmenu\InvMenu;
+use muqsit\invmenu\transaction\InvMenuTransaction;
+use muqsit\invmenu\transaction\InvMenuTransactionResult;
+use pocketmine\inventory\Inventory;
+use IcyEndymion004\GkitShards\libs\jojoe77777\FormAPI\SimpleForm;
 use Stringable;
 
 class Loader extends PluginBase implements Listener {
@@ -38,7 +42,7 @@ class Loader extends PluginBase implements Listener {
 			      $this->saveResource("config.yml");
 			      return;
 		    }
-		    if (version_compare("0.0.9.3", $this->getConfig()->get("config-version"))) {
+		    if (version_compare("1.0.0", $this->getConfig()->get("config-version"))) {
             $this->getLogger()->notice("§eYour configuration file is from another version. Updating the Config...");
 			      $this->getLogger()->notice("§eThe old configuration file can be found at config_old.yml");
 			      rename($this->getDataFolder()."config.yml", $this->getDataFolder()."config_old.yml");
@@ -77,9 +81,10 @@ class Loader extends PluginBase implements Listener {
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool
     {  
-
-
-
+        if($command->getName() === "shardlist"){
+            if(!$sender instanceof Player) return false;
+            $this->shardslist($sender);
+        }
         if(!isset($args[0])) return false;
         $types = $this->getConfig()->get("type-shards");
         if(!isset($types[$args[0]])){ 
@@ -89,7 +94,6 @@ class Loader extends PluginBase implements Listener {
         return false;
         }
         $shardname = $args[0]; //The Thing You Entered for the shard is not a vaild shard
-
         $NoShardexists = str_replace("{shard}", $shardname, $this->getConfig()->get("NoShardexistsmsg"));
         $NoShardexists = str_replace("{player}", $sender->getName(), $NoShardexists);
         $SetInvasShard = str_replace("{shard}", $shardname, $this->getConfig()->get("SetInvasShardmsg"));
@@ -106,6 +110,7 @@ class Loader extends PluginBase implements Listener {
             $sender->sendMessage($SetInvasShard);
             $this->setContentsToFile($args[0], $sender->getInventory()->getContents());
         }
+
         if($command->getName() === "seeshardinfo"){
             if(!$sender instanceof Player) return false;
             if(!isset($types[$args[0]])){
@@ -125,6 +130,41 @@ class Loader extends PluginBase implements Listener {
             }
             $menu->send($sender);   
             }
+            if($command->getName() === "editshard"){
+                if(!$sender instanceof Player) return false;
+                if(!isset($types[$args[0]])){
+                    $sender->sendMessage($NoShardexists);
+                    return false;
+                }
+                $guiname = str_replace("{shard}", $shardname, $this->getConfig()->get("GUIname"));
+                $this->getConfig()->set(strval($sender->getName()));   
+                $this->getConfig()->set(strval($sender->getName()), strval($shardname));
+        
+                $menu = InvMenu::create(InvMenu::TYPE_DOUBLE_CHEST);
+                $menu->setInventoryCloseListener(function(Player $player, Inventory $inventory) : void{
+                    $contents = $inventory->getContents();
+                    foreach($contents as $key => $value){
+                        /** @var Item $value */
+                        $contents[$key] = $value->jsonSerialize();
+                    }
+                    $shardname = $this->getConfig()->get($player);
+                    $editshardcomplete = str_replace("{shard}", $shardname, $this->getConfig()->get("ShardEditComplete"));
+                    $editshardcomplete = str_replace("{player}", $player->getName(), $editshardcomplete);
+                    $player->sendMessage($editshardcomplete);
+                    $player = (strval($player->getName()));
+                    $this->getShardData()->set($shardname, $contents);
+                    $this->getShardData()->save();
+                    $this->getConfig()->remove($player);
+                });
+                $menu->setName($guiname);
+                $inv = $menu->getInventory();
+                $val = $args[0];
+                $contents = $this->getInvContents($val);
+                foreach($contents as $item) {
+                    $inv->addItem($item);
+                }
+                $menu->send($sender);   
+                }
         if($command->getName() === "giveshard"){
             if(!$sender instanceof Player) return false;
             if(!isset($types[$args[0]])){ 
@@ -143,6 +183,36 @@ class Loader extends PluginBase implements Listener {
             $sender->sendMessage($GivenShard);
         }
         return true;
+    }
+
+    public function shardslist($sender)
+    {
+        $list = array_keys($this->getConfig()->get("type-shards") );
+        foreach($list as $key => $value){
+        $totalint = $key;
+        }        
+            $form = new SimpleForm(function(Player $player, $data){
+            $list = array_keys($this->getConfig()->get("type-shards") );
+            foreach($list as $key => $value){
+             
+            $totalint = $key;
+            if ($data !== null) {
+                if ($data === ($totalint)) {
+                    $player->getServer()->dispatchCommand($player, "giveshard $value");
+                    return;
+                }
+                }
+            }
+        });
+        $shardlist = $this->getConfig()->get("UIName");    
+        $form->setTitle($shardlist);
+        foreach($list as $key => $value){
+            $FormButtonFormat = str_replace("{shard}", strval($value), $this->getConfig()->get("UIButtonFormat"));
+            $form->addButton($FormButtonFormat);
+        }
+        $shardclose = $this->getConfig()->get("UICloseButton");
+        $form->addButton($shardclose);
+        $sender->sendForm($form);
     }
 
     public function getShardData(): Config{
