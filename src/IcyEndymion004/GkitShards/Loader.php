@@ -38,7 +38,7 @@ class Loader extends PluginBase implements Listener {
 			      $this->saveResource("config.yml");
 			      return;
 		    }
-		    if (version_compare("0.0.9", $this->getConfig()->get("config-version"))) {
+		    if (version_compare("0.0.9.3", $this->getConfig()->get("config-version"))) {
             $this->getLogger()->notice("§eYour configuration file is from another version. Updating the Config...");
 			      $this->getLogger()->notice("§eThe old configuration file can be found at config_old.yml");
 			      rename($this->getDataFolder()."config.yml", $this->getDataFolder()."config_old.yml");
@@ -131,8 +131,8 @@ class Loader extends PluginBase implements Listener {
                 $sender->sendMessage($NoShardexists);
                 return false;
             }
-            $ShardItemId = $this->getConfig()->get("shardID");
-            $ShardItemMeta = $this->getConfig()->get("shardMeta");
+            $ShardItemId = ($this->getConfig()->get("type-shards")[$args[0]]["shardID"]);
+            $ShardItemMeta = ($this->getConfig()->get("type-shards")[$args[0]]["ShardMeta"]);
             $item = ItemFactory::get($ShardItemId, $ShardItemMeta, 1);
             $item->setCustomName($this->getConfig()->get("type-shards")[$args[0]]["item-name"]);
             $item->setLore($this->getConfig()->get("type-shards")[$args[0]]["item-lore"]);
@@ -166,7 +166,7 @@ class Loader extends PluginBase implements Listener {
     public function getInvContents(string $shard): array{
         $data = $this->getShardData()->get($shard);
         foreach($data as $key => $value){
-            $data[$key] = Item::jsonDeserialize($value);
+            ($data)[$key] = Item::jsonDeserialize($value);
         }
         return $data;
 }
