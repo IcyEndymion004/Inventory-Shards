@@ -32,9 +32,9 @@ None That i know of
 
 - [x] ***Add An Shard Edit Cmd***
 
-- [ ] ***Add the Choice to Cost Money to open the shard*** 
+- [x] ***Add the Choice to Cost Money to open the shard*** 
 
-- [ ] ***Add the choice to set some msgs to popups/titles/subtitles***
+- [x] ***Add the choice to set some msgs to popups/titles/subtitles***
 
 - [x] ***Add some Better Changes for Player side use***
 
