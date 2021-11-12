@@ -36,3 +36,4 @@ permissions:
   inventory.command.editshards:
     description: EditShard Command Perm
     default: op
+
