@@ -88,6 +88,7 @@ class Loader extends PluginBase implements Listener {
             $econbase = Server::getInstance()->getPluginManager()->getPlugin("EconomyAPI")->getInstance();
             if($econbase->myMoney($player) > $deduction){
             $econbase->reduceMoney($player, $deduction);
+            $player->sendPopup("§8{§l§4-§r§8} §6 " . $deduction . "$");
             }else{
             if($poorboitype === 1){
             $player->sendMessage($poorboi);
