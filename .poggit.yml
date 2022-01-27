@@ -1,7 +1,8 @@
 --- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/IcyEndymion004/Gkit-shards-from-a-plugin-i-was-scammed-
 build-by-default: true
 branches:
-- main
+- API3
+- API-4-Branch
 projects:
   GKitShards_v1.0.0:
     path: ""
