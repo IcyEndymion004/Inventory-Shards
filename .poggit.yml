@@ -2,7 +2,7 @@
 build-by-default: true
 branches:
 - API3
-- API-4-Branch
+- API-4-branch
 projects:
   GKitShards_v1.0.0:
     path: ""
