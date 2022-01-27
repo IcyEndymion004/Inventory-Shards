@@ -1,26 +1,32 @@
 name: InventoryShards
-version: 0.0.9
+version: 1.0.0
 api: 4.0.0
 main: IcyEndymion004\GkitShards\Loader
-authors:
-  - Sink (qt)
-  - IcyEndymion004
-website: https://github.com/IcyEndymion004/Inventory-Shards
+authors: ["IcyEndymion004", "sink"]
+website: "https://github.com/IcyEndymion004/Inventory-Shards/"
+softdepend: [EconomyAPI]
 commands:
   setshardinv:
     description: "Sets Your Inventory As A Shard"
-    aliases: [setinv]
     permission: inventory.command.setshard
   giveshard:
     description: "Gives You A Inventory Shard"
-    aliases: [getsh]
     permission: inventory.command.giveshard
+  shardlist:
+    description: "Gives You A Inventory Shard"
+    permission: inventory.command.shardlist
   seeshardinfo:
     description: "Allows You To See Into A Shards Inventory"
-    aliases: [seesh]
+    permission: inventory.command.seeshard
+  editshard:
+    description: "Allows You To See Into A Shards Inventory"
+    permission: inventory.command.editshards
 permissions:
   inventory.command.setshard:
     description: SetShard Command Perm
+    default: op
+  inventory.command.shardlist:
+    description: ShardList Command Perm
     default: op
   inventory.command.giveshard:
     description: GiveShard Command Perm
@@ -28,3 +34,7 @@ permissions:
   inventory.command.seeshard:
     description: SeeShardinfo Command Perm
     default: op
+  inventory.command.editshards:
+    description: EditShard Command Perm
+    default: op
+
