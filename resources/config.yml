@@ -13,10 +13,10 @@ GivenShardMsg: "§6{player} §aHas Been Given §6{shard}" #Custom Tags: {player}
 #--------------------------------------------GUI-------------------------------------------------------------------
 GUIname: "§6{shard} §1Data" #Custom Tags:
 #--------------------------------------------Shards----------------------------------------------------------------
-shardID: 450
-ShardMeta: 0
 type-shards:
   typeshard1:
+    shardID: 450
+    ShardMeta: 0
     item-name: "Shard1"
     item-lore:
       - "Lore line 1."
