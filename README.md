@@ -4,6 +4,7 @@
 Downloads <a href="https://poggit.pmmp.io/p/InventoryShards"><img src="https://poggit.pmmp.io/shield.dl/InventoryShards"></a> / <a href="https://poggit.pmmp.io/p/InventoryShards"><img src="https://poggit.pmmp.io/shield.dl.total/InventoryShards"></a>
 
 Click This to download the plugin in a .phar file <a href="https://poggit.pmmp.io/p/InventoryShards"><img src="https://poggit.pmmp.io/shield.api/InventoryShards"></a>
+(The Video is not updated BTW)
 
 
 This was a plugin that i got from a deal were the other half got scammed
