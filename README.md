@@ -17,7 +17,7 @@ https://www.youtube.com/watch?v=JKmBERLnpoE
 
 This is a ready to go plugin were ever you download it from 
 
-# [Usage](https://github.com/IcyEndymion004/Inventory-Shards/blob/main/Usage.md)
+# [Usage](https://github.com/IcyEndymion004/Inventory-Shards/blob/API-4-branch/Usage.md)
 
 # Known Errors
 
