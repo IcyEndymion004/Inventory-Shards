@@ -27,6 +27,8 @@ None so far <3
 
 - [ ] ***Create A Wiki***
 
+- [ ] ***Finish Usage Support***
+
 - [x] ***Add A Command To See Whats In a Shard***
 
 - [x] ***Fix If A Command Is Not Finished Is Errors***
