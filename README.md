@@ -1,3 +1,6 @@
+# THIS BRANCH WELL NOT GET UPDATES ANYMORE 
+## ALL UPDATES AND ISSUES WELL ONLY BE FOR API4 BRANCH 
+## ISSUES FOR THIS BRANCH WELL BE CLOSED
 # Inventory Shards
 <a href="https://poggit.pmmp.io/p/InventoryShards"><img src="https://poggit.pmmp.io/shield.state/InventoryShards"></a> 
 
