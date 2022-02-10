@@ -17,9 +17,11 @@ https://www.youtube.com/watch?v=JKmBERLnpoE
 
 This is a ready to go plugin were ever you download it from 
 
+# [Usage](https://github.com/IcyEndymion004/Inventory-Shards/blob/main/Usage.md)
+
 # Known Errors
 
-If You dont fill out the command fully It well error So like if you just do /giveshard that well error im working around it maybe in my next patch
+None so far <3
 
 # Todo
 
