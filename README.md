@@ -29,22 +29,18 @@ None so far <3
 
 - [ ] ***Finish Usage Support***
 
-- [x] ***Add A Command To See Whats In a Shard***
+- [ ] ***Add ingame creation/customizatiom***
 
-- [x] ***Fix If A Command Is Not Finished Is Errors***
+- [ ] ***Rewrite to clean stuff up and actually look nice***
 
-- [x] ***Add Meta And Id Support***
+- [ ] ***Add a update checker***
 
-- [x] ***Add More Configable Stuff***
-
-- [x] ***Added Easyer Configable Messages***
-
-- [x] ***Add More Variables***
+- [ ] ***PM5 Update***
 
 # More Info
 
 I may update if needed and add new stuff
-If You have any Other Questions Dm me on discord at S3S4#0662
+If You have any Other Questions Dm me on discord at BLDYIcycat#0662
 
 
 # To Those who said i stole this with out the perm of sinkerz 
