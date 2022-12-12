@@ -25,6 +25,8 @@ None so far <3
 
 # Todo
 
+- [ ] ***Code Rewrite for V2
+
 - [ ] ***Create A Wiki***
 
 - [ ] ***Finish Usage Support***
