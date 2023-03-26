@@ -1,0 +1,10 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/IcyEndymion004/Inventory-Shards/InventoryShards_v1.0.0
+build-by-default: true
+branches:
+- API3
+- API-4
+projects:
+  InventoryShards:
+    path: ""
+    icon: "profile.png"
+...

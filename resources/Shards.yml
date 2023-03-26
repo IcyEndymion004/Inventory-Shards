@@ -1,0 +1,29 @@
+shards:
+  exampleshard1:
+    claimCost: 5
+    name: "Example Shard"
+    glint: true
+    animation: "instant"
+    item-form:
+      id: 450
+      meta: 0
+      display-name: "Example Shard"
+      lore:
+        - "Lore Line 1."
+        - "Lore Line 2."
+        - "Lore Line 3."
+        - "Lore Line 4."
+  exampleshard2:
+    claimCost: 10
+    name: "Example Shard #2"
+    glint: false
+    animation: "break"
+    item-form:
+      id: 350
+      meta: 0
+      display-name: "Example Shard #2"
+      lore:
+        - "Lore Line 1."
+        - "Lore Line 2."
+        - "Lore Line 3."
+        - "Lore Line 4."

@@ -1,0 +1,10 @@
+config-version: 2.0.0 #DONT CHANGE THE CONFIG VERSION AS IT WELL BREAK EVERYTHING
+
+Economy:
+  Enabled: true
+  Provider: EconomyAPI #Provider: [EconomyAPI, BedrockEconomy]
+Shard_Config:
+  Shift_Preview: true #set to false if you dont want anyone to be able to shift click shards to preview them
+  Editing: true #set to false if you dont want anyone to be able to edit shards
+  Creation: true #set to false if you dont want anyone to be able to create shards in game
+  Config_Editing: true #set to false if you dont want anyone to be able to edit config from in game

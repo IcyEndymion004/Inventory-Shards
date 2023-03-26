@@ -1,0 +1,40 @@
+messages:
+  Cost-To-Redeem:
+    type: 2 #1 = message, 2 = popup, 3 = title, 4 = actionbar, 5 = sub title, 6 = Tip
+    message: "§cYou Need§6 {cost}$ §cTo Claim This Shard" #{cost} = The Cost, {balance} = Users Balance, {shard} = The Name of the shard
+  Full-Inventory:
+    type: 3
+    message: "§cYour inventory doesn't have room!"
+  Invalid-Shard:
+    type: 1
+    message: "§cThe §6{shard} §cShard Does Not Exist" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A Shard
+  Update-Shard-Contents:
+    type: 6
+    message: "§aYou Have Set Inventory Of §6{player} §aAs The §6{shard} §aShard" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A
+  Give-Shard:
+    type: 5
+    message: "§6{player} §aHas Been Given §6{shard}" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A Shard
+  Given-Shard:
+    type: 1
+    message: "§aYou have been given {shard}!"
+  Edit-Shard:
+    type: 4
+    message: "§aYou Have Updated§6 {shard} 's §aContents" #Custom Tags: {player} = The Name Of The Sender {shard} = The Name Of The Thing You Entered For A Shard
+  Shard-Claim:
+    type: 5
+    message: "§aYou Opened a §l§c{shard}§a Shard!"
+  Shard-Preview-Finish:
+    type: 1
+    message: "§aYou Finished previewing {shard}"
+  Shard-Message-Update:
+    type: 1
+    message: "§aYou Updated {config} Message!"
+
+  List-Shard-UI-Name:
+    message: "§8[§1§4!§r§8] §eShards §cList §8[§1§4!§r§8]"
+  List-Shard-UI-Button-Format:
+    message: "§c§l {shard} \n §r§9Click To Get Shard"
+  List-Shard-UI-Close-Button:
+    message: "§cClose"
+  Shard-Edit-GUI-Name:
+    message: "§6{shard} §1Data"

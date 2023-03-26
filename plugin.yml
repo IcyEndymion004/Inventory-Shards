@@ -1,0 +1,34 @@
+main: IcyEndymion004\InventoryShards\Loader
+name: InventoryShards
+prefix: I.S
+version: 2.0.0
+api: 4.0.0
+load: POSTWORLD
+description: Inventory shards, The easy to use, fast and relyable, kit like system
+author: IcyEndymion004
+website: "https://github.com/IcyEndymion004/Inventory-Shards/"
+permissions:
+  inventory.shards.command.create:
+    default: op
+    description: Official Permission to use /createShard and its aliases
+  inventory.shards.command.editmessage:
+    default: op
+    description: Official Permission to use /editMessages and its aliases
+  inventory.shards.command.edit:
+    default: op
+    description: Official Permission to use /editShard and its aliases
+  inventory.shards.command.give:
+    default: op
+    description: Official Permission to use /giveShard and its aliases
+  inventory.shards.command.preview:
+    default: op
+    description: Official Permission to use /previewShard and its aliases
+  inventory.shards.command.setcontent:
+    default: op
+    description: Official Permission to use /setShardContents and its aliases
+  inventory.shards.command.list:
+    default: op
+    description: Official Permission to use /listShards and its aliases
+  inventory.shards.command.editdata:
+    default: op
+    description: Official Permission to use /editconfigs (Shards) and its aliases
