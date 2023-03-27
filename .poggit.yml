@@ -2,6 +2,7 @@
 build-by-default: true
 branches:
 - API3
+- V2
 - API-4
 projects:
   InventoryShards:
