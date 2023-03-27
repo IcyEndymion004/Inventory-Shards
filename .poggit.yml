@@ -1,8 +1,9 @@
---- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/IcyEndymion004/Gkit-shards-from-a-plugin-i-was-scammed-
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/IcyEndymion004/Inventory-shards
 build-by-default: true
 branches:
 - API3
 - API-4-branch
+- V2
 projects:
   InventoryShards_v1.0.0:
     path: ""
