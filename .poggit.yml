@@ -1,4 +1,4 @@
---- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/IcyEndymion004/Inventory-shards
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/IcyEndymion004/Inventory-Shards/GKitShards_v1.0.0
 build-by-default: true
 branches:
 - API3
